@@ -9,7 +9,7 @@ public class SocketRunner {
             if (serverSocket.isBound()){
                 System.out.println("connect");
             }
-//            while (true){}
+            while (true){}
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -10,8 +10,8 @@ public class PlayerMusic implements AutoCloseable, Runnable {
     private Clip clip = null;
     private FloatControl volumeControl = null;
     private boolean playing = false;
-
-    public PlayerMusic(File f) {
+    private File f = new File("bensound-ukulele.wav");
+    public PlayerMusic() {
         try {
             stream = AudioSystem.getAudioInputStream(f);
             clip = AudioSystem.getClip();
@@ -117,9 +117,8 @@ public class PlayerMusic implements AutoCloseable, Runnable {
     }
 
     // Статический метод, для удобства
-    public static PlayerMusic playSound(String path) {
-        File f = new File(path);
-        PlayerMusic snd = new PlayerMusic(f);
+    public static PlayerMusic playSound() {
+        PlayerMusic snd = new PlayerMusic();
         snd.run();
         return snd;
     }
