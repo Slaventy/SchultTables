@@ -1,7 +1,5 @@
 package Interfase;
 
-import GUI.MainFrame;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Date;
@@ -16,7 +14,7 @@ public class SaveResult {
     public void save(int count) {
         try {
             FileWriter fileWriter = new FileWriter(file, true);
-            fileWriter.write(date.toString() + "....." + MainFrame.POLECOLS + "X" + MainFrame.POLEROWS + " " + count + " sec." + "\n");
+//            fileWriter.write(date.toString() + "....." + MainFrame.POLECOLS + "X" + MainFrame.POLEROWS + " " + count + " sec." + "\n");
             fileWriter.close();
 
         }catch (Exception ex){

@@ -1,18 +1,15 @@
 package GUI;
 
-import Interfase.Settings;
-
 import javax.swing.*;
 /**
  * окно текущих результатов сессии
  * */
 
-public class ActRecordsFrame implements Settings {
+public class ActRecordsFrame  {
 
-    private JFrame frame = new JFrame("Records");
-
-    public ActRecordsFrame(){
-        frame.add(results.getActRecords());
+    public ActRecordsFrame(JTextPane jPanel){
+        JFrame frame = new JFrame("Records");
+        frame.add(jPanel);
         frame.setSize(300,400);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setVisible(true);

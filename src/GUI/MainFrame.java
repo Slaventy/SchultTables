@@ -1,30 +1,37 @@
 package GUI;
 
-import Action.*;
-import Interfase.Settings;
+import Action.ActionServerConnect;
+import Interfase.Game;
+import Interfase.LabelTimer;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class MainFrame extends JFrame implements Settings, Runnable {
+/**
+ * Главное окно
+ * */
+public class MainFrame{
+    private final JFrame frame;
+    private final LabelTimer labelTimer = new LabelTimer();
 
-    Timer timer;    //таймер
-    public static int count = 0; //счетчик праильно нажатых чисел
-    public static int goodDeal = 0; //счетчик оконченых игр
-    public static int POLEROWS = 2; //количество квадратов строки
-    public static int POLECOLS = 2; //количество квадратов столбцы
+    public MainFrame(){
 
-    @Override
-    public void run() {
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //окно
+        frame = new JFrame("ShouldTables");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         //меню бар
         JMenuBar jMenuBar = new JMenuBar();
+
         //подменю бара
         JMenu JMFile = new JMenu("File");
         JMenu JMHelp = new JMenu("Help");
-        JLabel label = new JLabel();  //поле вывода счетчика времени
         jMenuBar.add(JMFile);
         jMenuBar.add(JMHelp);
-        jMenuBar.add(label);
+        jMenuBar.add(labelTimer);
+
+//        //поле вывода счетчика времени
+//        jMenuBar.add(labelTimer);
 
         //содержимое менюбар File
         JMenuItem JMFileNewGame = new JMenuItem("New_Game");
@@ -44,17 +51,13 @@ public class MainFrame extends JFrame implements Settings, Runnable {
         JMenuItem JMHelpAbout = new JMenuItem("About");
         JMHelp.add(JMHelpAbout);
 
-        //таймер
-        timer = new Timer(1000, e -> label.setText(String.valueOf(count++)));
-        timer.setInitialDelay(0);
-
         //Слушатели
         JMFileExit.addActionListener(e -> System.exit(0));
-        JMFileNewGame.addActionListener(new ActionNewGame(timer));
-        JMFileResetGame.addActionListener(new ActionResetGame(timer));
-        JMHelpAbout.addActionListener(new ActionAbout());
-        JMActRecords.addActionListener(new ActionActRecords());
-        JMBestRecords.addActionListener(new ActionBestRecords());
+        JMFileNewGame.addActionListener(e -> Game.getGame().NewGame());
+        JMFileResetGame.addActionListener(e -> Game.getGame().ResetGame());
+        JMHelpAbout.addActionListener(e -> new AboutFrame());
+        JMActRecords.addActionListener(e -> Game.getGame().actRecords());
+        JMBestRecords.addActionListener(e -> new BestRecordsFrame());
         JMServerConnect.addActionListener(new ActionServerConnect());
 
         //установка меню бар
@@ -63,5 +66,21 @@ public class MainFrame extends JFrame implements Settings, Runnable {
         //установки окна
         frame.setSize(500,500);
         frame.setVisible(true);
+    }
+
+    //возвращает лейбл с интегрированным таймером
+
+    public LabelTimer getLabelTimer() {
+        return labelTimer;
+    }
+
+    //устанавливает игровое поле для новой игры
+    public void setPlayingField(JPanel panel){
+        frame.add(panel);
+    }
+
+    //вызов текущего игрового поля
+    public Container getContentPanel(){
+        return frame.getContentPane();
     }
 }
