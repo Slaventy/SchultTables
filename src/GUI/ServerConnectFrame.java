@@ -3,7 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class ServerConnectFrame {
+public class ServerConnectFrame extends JFrame{
 
     private final JButton jButtonClose = new JButton("Close");
     private final JButton jButtonConnect = new JButton("Connect");
@@ -11,19 +11,19 @@ public class ServerConnectFrame {
 
     public ServerConnectFrame(){
         //settings
-        JFrame serverConnectFrame = new JFrame("ServerConnect");
-        serverConnectFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            serverConnectFrame.setBounds(100, 100, 300, 200);
+        setTitle("ServerConnect");
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 300, 200);
         //components
-            jtextPane.setEditable(false);
+        jtextPane.setEditable(false);
         //adding elements on panel
         JPanel jpanel = new JPanel();
         jpanel.add(jButtonConnect);
-            jpanel.add(jButtonClose);
-            serverConnectFrame.add(jtextPane, BorderLayout.CENTER);
-            serverConnectFrame.add(jpanel, BorderLayout.SOUTH);
+        jpanel.add(jButtonClose);
+        add(jtextPane, BorderLayout.CENTER);
+        add(jpanel, BorderLayout.SOUTH);
         //running frame
-            serverConnectFrame.setVisible(true);
+            setVisible(true);
     }
 
     public JButton getjButtonClose(){

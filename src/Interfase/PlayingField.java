@@ -22,6 +22,12 @@ public class PlayingField extends JPanel{
         this.col = col;
         setField();
     }
+    public void setRow(int row){
+        this.row = row;
+    }
+    public void setCol(int col){
+        this.col = col;
+    }
 
 
     public void setGoodDeal(int goodDeal){
@@ -45,9 +51,9 @@ public class PlayingField extends JPanel{
         if ((Integer.parseInt(e.getActionCommand()) - number) == 1) {
             number = Integer.parseInt(e.getActionCommand());    //пересохраняем номер кнопки
             JButton button = (JButton) e.getSource();       //берем нашу кнопку
-//            button.setContentAreaFilled(false);     //изменяем ее состояние на нажато
-            button.setBackground(new Color(new Random().nextInt()));
-//            button.setIcon(new ImageIcon("icon.bmp"));
+//            button.setContentAreaFilled(false);     //изменяем ее состояние на нажато или ...
+            button.setBackground(new Color(new Random().nextInt()));    // меняем цвет кнопки или ...
+//            button.setIcon(new ImageIcon("icon.bmp"));    //заменяем картинку
             correctlyPushedButtons++;    //добавляю счетчик правильно нажатых кнопок
         }
         //когда количество правильно нажатых кнопок совпадет с общим количеством
@@ -59,7 +65,6 @@ public class PlayingField extends JPanel{
                 row++;
                 col++;
             }
-//            results.setResults(Game.count);  //сохранение результата
             Game.getGame().setResult(col, row);
             Game.getGame().ResetGame();   //сброс поля и генерация нового с текущими настройками
         }
