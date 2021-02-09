@@ -1,4 +1,7 @@
-package Interfase;
+package Server;
+
+import Interfase.Game;
+import Interfase.MakeRandomMassive;
 
 import javax.swing.*;
 import java.awt.*;

@@ -33,4 +33,8 @@ public class LabelTimer extends JLabel{
     public int getCount(){
         return count;
     }
+
+    public void stopTimer(){
+        timer.stop();
+    }
 }

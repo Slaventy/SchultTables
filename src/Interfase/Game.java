@@ -2,6 +2,7 @@ package Interfase;
 
 import GUI.ActRecordsFrame;
 import GUI.MainFrame;
+import GUI.ServerConnectFrame;
 
 
 public class Game implements Runnable {
@@ -14,11 +15,9 @@ public class Game implements Runnable {
     private static Game instance;
 
     private final PlayingField playingField = new PlayingField(POLEROWS, POLECOLS);
+    private final ServerConnectFrame serverConnectFrame = new ServerConnectFrame();
 
-
-    private Game(){
-
-    }
+    private Game(){}
 
     public static Game getGame(){
         if (instance == null){
@@ -57,5 +56,12 @@ public class Game implements Runnable {
     }
     public void actRecords(){
         new ActRecordsFrame(resaults.getActRecords());
+    }
+
+    public void server(){
+        mainFrame.getLabelTimer().startTimer();
+        mainFrame.getContentPanel().removeAll();
+        mainFrame.getContentPanel().repaint();
+        mainFrame.setPlayingField(serverConnectFrame);
     }
 }

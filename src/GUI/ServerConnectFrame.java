@@ -1,39 +1,33 @@
 package GUI;
+/**
+ * Класс реализует графический интерфейс
+ * для создания соединения с сервером
+ *
+ * */
+import Client.Client;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ServerConnectFrame extends JFrame{
+public class ServerConnectFrame extends JPanel{
 
-    private final JButton jButtonClose = new JButton("Close");
-    private final JButton jButtonConnect = new JButton("Connect");
-    private final JTextPane jtextPane = new JTextPane();
+
+    private final JTextPane jTextPane = new JTextPane();
 
     public ServerConnectFrame(){
-        //settings
-        setTitle("ServerConnect");
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 300, 200);
-        //components
-        jtextPane.setEditable(false);
-        //adding elements on panel
-        JPanel jpanel = new JPanel();
-        jpanel.add(jButtonConnect);
-        jpanel.add(jButtonClose);
-        add(jtextPane, BorderLayout.CENTER);
-        add(jpanel, BorderLayout.SOUTH);
-        //running frame
-            setVisible(true);
+        JButton jButtonClose = new JButton("Close");
+        jButtonClose.addActionListener(e -> Client.getClient());
+        JButton jButtonConnect = new JButton("Connect");
+        jButtonConnect.addActionListener(e -> Client.getClient());
+        jTextPane.setEditable(false);
+        jTextPane.setText("Server connection interface");
+        setLayout(new GridLayout(2, 2));
+        add(jTextPane);
+        add(jButtonConnect);
+        add(jButtonClose);
     }
 
-    public JButton getjButtonClose(){
-        return jButtonClose;
+    public JTextPane getJTextPane(){
+        return jTextPane;
     }
-    public JButton getjButtonConnect(){
-        return jButtonConnect;
-    }
-    public JTextPane getJtextPane(){
-        return jtextPane;
-    }
-
 }

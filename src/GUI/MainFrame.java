@@ -1,6 +1,5 @@
 package GUI;
 
-import Action.ActionServerConnect;
 import Interfase.Game;
 import Interfase.LabelTimer;
 
@@ -30,8 +29,6 @@ public class MainFrame{
         jMenuBar.add(JMHelp);
         jMenuBar.add(labelTimer);
 
-//        //поле вывода счетчика времени
-//        jMenuBar.add(labelTimer);
 
         //содержимое менюбар File
         JMenuItem JMFileNewGame = new JMenuItem("New_Game");
@@ -50,6 +47,12 @@ public class MainFrame{
         JMHelp.add(JMBestRecords);
         JMenuItem JMHelpAbout = new JMenuItem("About");
         JMHelp.add(JMHelpAbout);
+        //установка меню бар
+        frame.setJMenuBar(jMenuBar);
+
+        //установки окна
+        frame.setSize(500,500);
+        frame.setVisible(true);
 
         //Слушатели
         JMFileExit.addActionListener(e -> System.exit(0));
@@ -58,14 +61,7 @@ public class MainFrame{
         JMHelpAbout.addActionListener(e -> new AboutFrame());
         JMActRecords.addActionListener(e -> Game.getGame().actRecords());
         JMBestRecords.addActionListener(e -> new BestRecordsFrame());
-        JMServerConnect.addActionListener(new ActionServerConnect());
-
-        //установка меню бар
-        frame.setJMenuBar(jMenuBar);
-
-        //установки окна
-        frame.setSize(500,500);
-        frame.setVisible(true);
+        JMServerConnect.addActionListener(e -> Game.getGame().server());
     }
 
     //возвращает лейбл с интегрированным таймером
