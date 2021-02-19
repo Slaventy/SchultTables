@@ -1,6 +1,8 @@
 package GUI;
 
 import Client.Client;
+import Interfase.Game;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,10 +14,11 @@ import java.awt.*;
 
 public class ServerConnectFrame extends JPanel{
 
+    private JTextField jTextField = new JTextField(20);
 
     public ServerConnectFrame(){
         JButton jButtonClose = new JButton("Close");
-        jButtonClose.addActionListener(e -> Client.getClient());
+        jButtonClose.addActionListener(e -> Game.getGame().clearFrame());
         JButton jButtonConnect = new JButton("Connect");
         jButtonConnect.addActionListener(e -> Client.getClient());
         JLabel jLabel = new JLabel();
@@ -25,7 +28,7 @@ public class ServerConnectFrame extends JPanel{
         setLayout(new BorderLayout());
         add(jLabel, BorderLayout.NORTH);
         JPanel jPanelUserName = new JPanel();
-        JTextField jTextField = new JTextField(20);
+
         jPanelUserName.add(jTextField);
         jTextField.setSize(20, 1);
         add(jPanelUserName, BorderLayout.CENTER);
@@ -35,4 +38,7 @@ public class ServerConnectFrame extends JPanel{
         add(jPanel, BorderLayout.SOUTH);
     }
 
+    public JTextField getjTextField(){
+        return jTextField;
+    }
 }

@@ -32,8 +32,7 @@ public class Game implements Runnable {
     }
 
     public void NewGame(){
-        mainFrame.getLabelTimer().startTimer();    //запуск тймера
-        mainFrame.getContentPanel().removeAll();    //удаление предыдущего контента из панели
+        clearFrame();
         playingField.setGoodDeal(0);
         playingField.setCol(POLECOLS);
         playingField.setRow(POLEROWS);
@@ -43,25 +42,34 @@ public class Game implements Runnable {
     }
     // сброс поля
     public void ResetGame(){
-        mainFrame.getLabelTimer().resetTimer();
-        mainFrame.getContentPanel().removeAll();
+        clearFrame();
         playingField.setField();
         mainFrame.setPlayingField(playingField);
     }
+
     Resaults resaults = new Resaults();
     //результаты сохраняем
     public void setResult(int col, int row){
         int count = mainFrame.getLabelTimer().getCount();
         resaults.setResults(count, row, col);
     }
+
     public void actRecords(){
         new ActRecordsFrame(resaults.getActRecords());
     }
+
 
     public void server(){
         mainFrame.getLabelTimer().startTimer();
         mainFrame.getContentPanel().removeAll();
         mainFrame.getContentPanel().repaint();
         mainFrame.setPlayingField(serverConnectFrame);
+    }
+
+    //очищает рабочую область фрейма
+    public void clearFrame(){
+        mainFrame.getLabelTimer().resetTimer();
+        mainFrame.getContentPanel().removeAll();
+        mainFrame.getContentPanel().repaint();
     }
 }

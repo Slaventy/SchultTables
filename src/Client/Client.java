@@ -1,4 +1,5 @@
 package Client;
+
 /**
  * Класс реализует подключение и взаимодействие с сервером
  * игры.
@@ -16,6 +17,8 @@ public class Client {
         return instance;
     }
 
+    public void connectServer(){
+    }
 }
 
 
